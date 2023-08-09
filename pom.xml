@@ -5,24 +5,28 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.6</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.1.2</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.seidelsoft</groupId>
-	<artifactId>SpringDemo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>SpringEcommerceBackend</artifactId>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
-	<name>SpringDemo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>SpringEcommerceBackend</name>
+	<description>Project Backend for Ecommerce</description>
+
 	<properties>
 		<java.version>17</java.version>
 		<jwt.version>0.11.5</jwt.version>
+		<springdoc.version>2.1.0</springdoc.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,16 +55,6 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -84,7 +78,7 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.1.0</version>
+			<version>${springdoc.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -103,33 +97,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>migrate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<driver>org.postgresql.Driver</driver>
-					<url>jdbc:postgresql://localhost:5432/local_spring</url>
-					<user>postgres</user>
-					<password>postgres123</password>
-					<baselineOnMigrate>true</baselineOnMigrate>
-					<schemas>public</schemas>
-					<group>true</group>
-					<locations>
-						<location>
-							filesystem:src/main/resources/db/migration
-						</location>
-					</locations>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
-
 </project>

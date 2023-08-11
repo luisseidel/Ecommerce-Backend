@@ -19,4 +19,8 @@ public class RegisterRequest {
     @NotEmpty
     private String password;
 
+	public RegisterRequest(String name, String email) {
+		this.name = name;
+		this.email = email;
+	}
 }

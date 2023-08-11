@@ -7,13 +7,10 @@ import com.seidelsoft.SpringEcommerceBackend.model.entity.User;
 import com.seidelsoft.SpringEcommerceBackend.model.enumerations.Role;
 import com.seidelsoft.SpringEcommerceBackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class AuthenticationService {

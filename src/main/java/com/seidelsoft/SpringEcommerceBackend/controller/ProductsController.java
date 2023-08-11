@@ -4,7 +4,6 @@ import com.seidelsoft.SpringEcommerceBackend.model.dto.in.ProductDTO;
 import com.seidelsoft.SpringEcommerceBackend.model.entity.Product;
 import com.seidelsoft.SpringEcommerceBackend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

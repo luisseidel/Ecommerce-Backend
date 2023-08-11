@@ -3,8 +3,10 @@ package com.seidelsoft.SpringEcommerceBackend.controller;
 import com.seidelsoft.SpringEcommerceBackend.model.dto.in.UserDTO;
 import com.seidelsoft.SpringEcommerceBackend.model.entity.User;
 import com.seidelsoft.SpringEcommerceBackend.repository.UserRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +18,8 @@ public class UserController implements SecuredController {
 
 	@Autowired
 	private UserRepository repository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping
 	@CrossOrigin
@@ -35,7 +39,10 @@ public class UserController implements SecuredController {
 		c.ifPresent( user -> {
 			c.get().setName(dto.getName());
 			c.get().setEmail(dto.getEmail());
-			c.get().setPassword(dto.getPassword());
+			//password dont changed
+			if (!StringUtils.isAllBlank(dto.getPassword())) {
+				c.get().setPassword(passwordEncoder.encode(dto.getPassword()));
+			}
 			repository.save(c.get());
 		});
 
@@ -45,6 +52,6 @@ public class UserController implements SecuredController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> delete(@PathVariable String id) {
 		repository.delete(new User(id));
-		return ResponseEntity.ok("Deleted!");
+		return ResponseEntity.ok().build();
 	}
 }
